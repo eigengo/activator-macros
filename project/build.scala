@@ -7,7 +7,7 @@ object MacrosActivatorBuild extends Build {
   lazy val root: Project = Project(
     "root",
     file("."),
-    settings = buildSettings) aggregate (macros, src)
+    settings = buildSettings) aggregate (macros, demo)
 
   lazy val macros: Project = Project(
     "macros",
@@ -16,9 +16,9 @@ object MacrosActivatorBuild extends Build {
       libraryDependencies <+= Dependencies.scala_lang("scala-compiler")
     ))
 
-  lazy val src: Project = Project(
-    "src",
-    file("src"),
+  lazy val demo: Project = Project(
+    "demo",
+    file("demo"),
     settings = buildSettings) dependsOn (macros)
 
 }

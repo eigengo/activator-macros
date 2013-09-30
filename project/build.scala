@@ -12,9 +12,10 @@ object MacrosActivatorBuild extends Build {
   lazy val macros: Project = Project(
     "macros",
     file("macros"),
-    settings = buildSettings ++ Seq(
-      libraryDependencies <+= Dependencies.scala_lang("scala-compiler")
-    ))
+    settings = buildSettings ++ Seq(libraryDependencies <++=
+      (scalaVersion)(v => Seq(("org.scala-lang" % "scala-compiler" % v), ("org.scala-lang" % "scala-reflect" % v)))))
+
+//      Dependencies.scala_lang("scala-compiler", "scala-reflect")))
 
   lazy val demo: Project = Project(
     "demo",
